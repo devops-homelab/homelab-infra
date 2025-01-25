@@ -5,6 +5,7 @@ on:
     types:
       - synchronize
       - closed
+      - opened
     branches:
       - main
 
