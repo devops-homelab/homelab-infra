@@ -1,0 +1,70 @@
+name: Deploy with Terragrunt
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+    branches:
+      - main
+
+jobs:
+  terragrunt-deploy:
+    name: Terragrunt Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: read
+      id-token: write  # Required for OIDC authentication with cloud providers
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Extract Environment from Labels
+      - name: Get Environment from Labels
+        id: extract-env
+        run: |
+          echo "Pull request labels: ${{ toJSON(github.event.pull_request.labels) }}"
+          ENVIRONMENT=$(echo "${{ toJSON(github.event.pull_request.labels) }}" | jq -r '.[] | select(.name | test("dev|staging|prod")) | .name')
+          if [ -z "$ENVIRONMENT" ]; then
+            echo "No environment label found (e.g., dev, staging, prod)."
+            exit 1
+          fi
+          echo "Environment: $ENVIRONMENT"
+          echo "env=$ENVIRONMENT" >> $GITHUB_ENV
+
+      # Step 3: Set up Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.3
+
+      # Step 4: Install Terragrunt
+      - name: Install Terragrunt
+        run: |
+          TERRAGRUNT_VERSION=$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | jq -r '.tag_name' | sed 's/v//')
+          curl -L -o /usr/local/bin/terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64
+          chmod +x /usr/local/bin/terragrunt
+
+      # Step 5: Set up environment variables
+      - name: Set Environment Variables
+        env:
+          DO_ACCESS_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
+        run: |
+          export DIGITALOCEAN_TOKEN="${DO_ACCESS_TOKEN}"
+
+      # Step 6: Deploy with Terragrunt
+      - name: Deploy Terragrunt Modules
+        working-directory: ./live/${{ env.env }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          for dir in compute k8s-cluster networking/vpc; do
+            echo "Deploying $dir in ${{ env.env }} environment..."
+            terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir $dir
+          done
