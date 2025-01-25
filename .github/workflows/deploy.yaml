@@ -38,12 +38,6 @@ jobs:
           curl -L -o /usr/local/bin/terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64
           chmod +x /usr/local/bin/terragrunt
 
-      # Step 5: Set up environment variables
-      - name: Set Environment Variables
-        env:
-          DO_ACCESS_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
-        run: |
-          export DIGITALOCEAN_TOKEN="${DO_ACCESS_TOKEN}"
 
       # Step 6: Deploy with Terragrunt
       - name: Terragrunt Plan
@@ -51,6 +45,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          DIGITALOCEAN_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
         run: |
             terragrunt --terragrunt-working-dir live/dev/networking/vpc/ init --terragrunt-non-interactive
             terragrunt --terragrunt-working-dir live/dev/networking/vpc/ plan --terragrunt-non-interactive
@@ -62,7 +57,6 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          DO_ACCESS_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
+          DIGITALOCEAN_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
         run: |
-            export DIGITALOCEAN_TOKEN="${DO_ACCESS_TOKEN}"
             terragrunt --terragrunt-working-dir live/dev/networking/vpc/ apply --terragrunt-non-interactive -auto-approve
