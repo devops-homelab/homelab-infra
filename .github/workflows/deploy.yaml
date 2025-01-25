@@ -50,4 +50,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
             ls
-            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ init
+            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ init --terragrunt-non-interactive
