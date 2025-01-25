@@ -10,5 +10,5 @@ inputs = {
     name        = "homelab-vpc"
     environment = "dev"
     region      = "sgp1"
-    ip_range    = "10.10.0.0/16"
+    ip_range    = "10.122.0.0/20"
 }

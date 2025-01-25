@@ -1,0 +1,65 @@
+name: Deploy with Terragrunt
+
+on:
+  pull_request:
+    types:
+      - synchronize
+      - labeled
+      - closed
+    branches:
+      - main
+
+jobs:
+  terragrunt-deploy:
+    name: Terragrunt Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: read
+      id-token: write  # Required for OIDC authentication with cloud providers
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 3: Set up Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.10.5
+          terraform_wrapper: false
+
+      # Step 4: Install Terragrunt
+      - name: Install Terragrunt
+        run: |
+          TERRAGRUNT_VERSION=$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | jq -r '.tag_name' | sed 's/v//')
+          curl -L -o /usr/local/bin/terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64
+          chmod +x /usr/local/bin/terragrunt
+
+      # Step 5: Set up environment variables
+      - name: Set Environment Variables
+        env:
+          DO_ACCESS_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
+        run: |
+          export DIGITALOCEAN_TOKEN="${DO_ACCESS_TOKEN}"
+
+      # Step 6: Deploy with Terragrunt
+      - name: Terragrunt Plan
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ init --terragrunt-non-interactive
+            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ plan --terragrunt-non-interactive
+
+    
+      # Step 7: Deploy with Terragrunt
+      - name: Terragrunt Apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ apply --terragrunt-non-interactive
