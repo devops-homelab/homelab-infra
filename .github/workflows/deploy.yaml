@@ -29,7 +29,7 @@ jobs:
         id: extract-env
         run: |
           echo "Pull request labels: ${{ toJSON(github.event.pull_request.labels) }}"
-          ENVIRONMENT=$(echo "${{ toJSON(github.event.pull_request.labels) }}" | jq -r '.[] | select(.name | test("dev|staging|prod")) | .name')
+          ENVIRONMENT=$(echo "${{ toJSON(github.event.pull_request.labels) }}")
           if [ -z "$ENVIRONMENT" ]; then
             echo "No environment label found (e.g., dev, staging, prod)."
             exit 1
