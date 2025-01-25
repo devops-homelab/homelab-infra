@@ -17,12 +17,26 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-      id-token: write  # Required for OIDC authentication with cloud providers
+      id-token: write
+      
+    env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        DIGITALOCEAN_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
 
     steps:
       # Step 1: Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      # Step 2: Load environment variables from file
+      - name: Load Environment Variables
+        id: load-env
+        run: |
+          source config.env
+          echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
+          echo "COMPONENT=$COMPONENT" >> $GITHUB_ENV
+          echo "MODULE=$MODULE" >> $GITHUB_ENV
 
       # Step 3: Set up Terraform
       - name: Setup Terraform
@@ -38,25 +52,15 @@ jobs:
           curl -L -o /usr/local/bin/terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64
           chmod +x /usr/local/bin/terragrunt
 
-
-      # Step 6: Deploy with Terragrunt
+      # Step 5: Deploy with Terragrunt
       - name: Terragrunt Plan
         if: ${{ github.event.pull_request.merged == false }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          DIGITALOCEAN_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
         run: |
-            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ init --terragrunt-non-interactive
-            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ plan --terragrunt-non-interactive
-
+            terragrunt --terragrunt-working-dir live/${{ env.ENVIRONMENT }}/${{ env.COMPONENT }}/${{ env.MODULE }}/ init --terragrunt-non-interactive
+            terragrunt --terragrunt-working-dir live/${{ env.ENVIRONMENT }}/${{ env.COMPONENT }}/${{ env.MODULE }}/ plan --terragrunt-non-interactive
     
-      # Step 7: Deploy with Terragrunt
+      # Step 6: Deploy with Terragrunt
       - name: Terragrunt Apply
         if: ${{ github.event.pull_request.merged == true }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          DIGITALOCEAN_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
         run: |
-            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ apply --terragrunt-non-interactive -auto-approve
+            terragrunt --terragrunt-working-dir live/${{ env.ENVIRONMENT }}/${{ env.COMPONENT }}/${{ env.MODULE }}/ apply --terragrunt-non-interactive -auto-approve
