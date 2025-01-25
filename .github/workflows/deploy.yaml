@@ -63,4 +63,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ apply --terragrunt-non-interactive
+            terragrunt --terragrunt-working-dir live/dev/networking/vpc/ apply --terragrunt-non-interactive -auto-approve
