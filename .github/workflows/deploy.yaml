@@ -53,14 +53,14 @@ jobs:
           chmod +x /usr/local/bin/terragrunt
 
       # Step 5: Deploy with Terragrunt
-      - name: Terragrunt Plan
+      - name: Terragrunt Plan - ${{ env.COMPONENT }}/${{ env.MODULE }}
         if: ${{ github.event.pull_request.merged == false }}
         run: |
             terragrunt --terragrunt-working-dir live/${{ env.ENVIRONMENT }}/${{ env.COMPONENT }}/${{ env.MODULE }}/ init --terragrunt-non-interactive
             terragrunt --terragrunt-working-dir live/${{ env.ENVIRONMENT }}/${{ env.COMPONENT }}/${{ env.MODULE }}/ plan --terragrunt-non-interactive
     
       # Step 6: Deploy with Terragrunt
-      - name: Terragrunt Apply
+      - name: Terragrunt Apply - ${{ env.COMPONENT }}/${{ env.MODULE }}
         if: ${{ github.event.pull_request.merged == true }}
         run: |
             terragrunt --terragrunt-working-dir live/${{ env.ENVIRONMENT }}/${{ env.COMPONENT }}/${{ env.MODULE }}/ apply --terragrunt-non-interactive -auto-approve
