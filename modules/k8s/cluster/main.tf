@@ -13,7 +13,7 @@ module "homelab_cluster" {
   cluster_version = var.cluster_version
   vpc_uuid        = var.vpc_uuid
 
-  infra_node_pool = var.infra_node_pool
+  # infra_node_pool = var.infra_node_pool
 
-  app_node_pool = var.app_node_pool
+  # app_node_pool = var.app_node_pool
 }
