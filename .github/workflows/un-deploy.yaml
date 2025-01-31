@@ -1,24 +1,14 @@
-name: Deploy with Terragrunt
+name: Un-deploy with Terragrunt
 
-on:
-  pull_request:
-    types:
-      - synchronize
-      - closed
-      - opened
-    branches:
-      - main
-    paths-ignore:
-      - 'README.md'
-      - '.github/**'
-      
+on: workflow_dispatch
+
 jobs:
-  deploy-infra:
+  un-deploy-infra:
     permissions:
       contents: read
       pull-requests: read
       id-token: write
-    uses: devops-homelab/homelab-github-reusable-workflows/.github/workflows/tf-deploy.yaml@main
+    uses: devops-homelab/homelab-github-reusable-workflows/.github/workflows/tf-un-deploy.yaml@main
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
