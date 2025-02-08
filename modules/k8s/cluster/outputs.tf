@@ -8,5 +8,5 @@ output "id" {
 
 output "test" {
   value       = local.test_output
-
+  sensitive = true
 }
