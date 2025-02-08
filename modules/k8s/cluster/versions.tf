@@ -12,12 +12,12 @@
 #   }
 # }
 
-provider "helm" {
-  kubernetes {
-    host  = module.homelab_cluster.endpoint
-    token = module.homelab_cluster[0].kube_config[0].token
-    cluster_ca_certificate = base64decode(
-      module.homelab_cluster[0].kube_config[0].cluster_ca_certificate
-    )
-  }
-}
+# provider "helm" {
+#   kubernetes {
+#     host  = module.homelab_cluster.endpoint
+#     token = module.homelab_cluster[0].kube_config[0].token
+#     cluster_ca_certificate = base64decode(
+#       module.homelab_cluster[0].kube_config[0].cluster_ca_certificate
+#     )
+#   }
+# }
