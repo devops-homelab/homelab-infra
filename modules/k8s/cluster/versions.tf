@@ -17,7 +17,7 @@ provider "helm" {
     host  = module.homelab_cluster.endpoint
     token = module.homelab_cluster[0].kube_config[0].token
     cluster_ca_certificate = base64decode(
-      module.homelab_cluster.kube_config[0].cluster_ca_certificate
+      module.homelab_cluster[0].kube_config[0].cluster_ca_certificate
     )
   }
 }
