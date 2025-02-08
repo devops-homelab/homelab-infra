@@ -17,14 +17,14 @@ module "homelab_cluster" {
   app_node_pool = var.app_node_pool
 }
 
-# module "homelab_cluster_config" {
-#   source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
+module "homelab_cluster_config" {
+  source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
   
-#   deploy_metrics-server = {
-#     metrics-server = {
-#       version = "3.11.0"
-#     }
-#   }
+  deploy_metrics-server = {
+    metrics-server = {
+      version = "3.11.0"
+    }
+  }
   
-#   depends_on = [ module.homelab_cluster ]
-# }
+  depends_on = [ module.homelab_cluster ]
+}
