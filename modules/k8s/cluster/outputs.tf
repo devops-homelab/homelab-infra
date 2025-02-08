@@ -8,5 +8,5 @@ output "id" {
 
 output "test" {
   value       = module.homelab_cluster
-  sensitive = true
+  sensitive = false
 }
