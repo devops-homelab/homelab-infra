@@ -10,7 +10,7 @@ inputs = {
     name            = "homelab-k8s-cluster"
     environment     = "dev"
     region          = "sgp1"
-    cluster_version = "1.31.1-do.5"
+    cluster_version = "1.32.1-do.0"
     vpc_uuid        = "d1a05ead-4618-4fb1-8024-7bdd06c2ef32"
 
     infra_node_pool = {
