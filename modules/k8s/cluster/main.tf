@@ -20,9 +20,10 @@ module "homelab_cluster" {
 module "homelab_cluster_config" {
   source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
   
-  deploy_metrics-server = {
-    metrics-server = {
-      version = "3.12.2"
+ 
+  deploy_cert_manager = {
+    cert-manager = {
+      version = "1.13.3"
     }
   }
   
