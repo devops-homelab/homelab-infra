@@ -4,7 +4,6 @@
 terraform {
   backend "s3" {}
 }
-
 module "homelab_cluster" {
   source          = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/cluster/?ref=main"
   name            = var.name
@@ -16,4 +15,16 @@ module "homelab_cluster" {
   infra_node_pool = var.infra_node_pool
 
   app_node_pool = var.app_node_pool
+}
+
+module "homelab_cluster_config" {
+  source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
+  
+  deploy_metrics-server = {
+    metrics-server = {
+      version = "3.11.0"
+    }
+  }
+  
+  depends_on = [ module.homelab_cluster ]
 }
