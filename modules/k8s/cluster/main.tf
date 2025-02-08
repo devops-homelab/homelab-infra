@@ -6,7 +6,7 @@ terraform {
 }
 
 module "homelab_cluster" {
-  source          = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/?ref=main"
+  source          = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/cluster/?ref=main"
   name            = var.name
   environment     = var.environment
   region          = var.region
