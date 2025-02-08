@@ -22,7 +22,7 @@ module "homelab_cluster_config" {
   
   deploy_metrics-server = {
     metrics-server = {
-      version = "3.11.0"
+      version = "3.12.2"
     }
   }
   
