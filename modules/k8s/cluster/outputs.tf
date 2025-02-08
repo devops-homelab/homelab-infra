@@ -7,6 +7,6 @@ output "id" {
 }
 
 output "test" {
-  value       = module.homelab_cluster
-  sensitive = false
+  value       = local.test_output
+
 }

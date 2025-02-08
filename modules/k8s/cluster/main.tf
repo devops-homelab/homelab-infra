@@ -4,6 +4,9 @@
 terraform {
   backend "s3" {}
 }
+locals {
+  test_output = module.homelab_cluster
+}
 
 module "homelab_cluster" {
   source          = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/cluster/?ref=main"
