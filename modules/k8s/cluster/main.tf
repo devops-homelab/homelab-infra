@@ -21,11 +21,11 @@ module "homelab_cluster_config" {
   source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
   
  
-  # deploy_cert_manager = {
-  #   cert-manager = {
-  #     version = "1.13.3"
-  #   }
-  # }
+  deploy_cert_manager = {
+    cert-manager = {
+      version = "1.17.0"
+    }
+  }
   
   depends_on = [ module.homelab_cluster ]
 }
