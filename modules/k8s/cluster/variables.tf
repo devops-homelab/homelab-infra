@@ -23,25 +23,8 @@ variable "vpc_uuid" {
   type        = string
 }
 
-# variable "infra_node_pool" {
-#   description = "The configuration for the infra node pool"
-#   type = map(object({
-#     node_count = number
-#     min_nodes  = number
-#     max_nodes  = number
-#     size       = string
-#     labels     = map(string)
-#     tags       = list(string)
-#     taint = list(object({
-#       key    = string
-#       value  = string
-#       effect = string
-#     }))
-#   }))
-# }
-
-variable "app_node_pool" {
-  description = "The configuration for the app node pool"
+variable "infra_node_pool" {
+  description = "The configuration for the infra node pool"
   type = map(object({
     node_count = number
     min_nodes  = number
@@ -56,3 +39,20 @@ variable "app_node_pool" {
     })), []) # ✅ Ensure taint is optional with an empty list as default
   }))
 }
+
+# variable "app_node_pool" {
+#   description = "The configuration for the app node pool"
+#   type = map(object({
+#     node_count = number
+#     min_nodes  = number
+#     max_nodes  = number
+#     size       = string
+#     labels     = map(string)
+#     tags       = list(string)
+#     taint      = optional(list(object({
+#       key    = string
+#       value  = string
+#       effect = string
+#     })), []) # ✅ Ensure taint is optional with an empty list as default
+#   }))
+# }
