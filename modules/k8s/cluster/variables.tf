@@ -49,10 +49,10 @@ variable "app_node_pool" {
     size       = string
     labels     = map(string)
     tags       = list(string)
-    taint = list(object({
+    taint      = optional(list(object({
       key    = string
       value  = string
       effect = string
-    }))
+    })), []) # ✅ Ensure taint is optional with an empty list as default
   }))
 }
