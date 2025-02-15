@@ -32,13 +32,13 @@ inputs = {
     # }
 
     app_node_pool = {
-    app_node = {
-        node_count = 1
-        min_nodes  = 1
-        max_nodes  = 1
-        size       = "s-4vcpu-8gb-intel"
-        labels     = { "cluster" = "app" }
-        tags       = ["homelab-k8s-cluster"]
-    }
+        app_node = {
+            node_count = 1
+            min_nodes  = 1
+            max_nodes  = 1
+            size       = "s-4vcpu-8gb-intel"
+            labels     = { "cluster" = "app" }
+            tags       = ["homelab-k8s-cluster"]
+        }
     }
 }
