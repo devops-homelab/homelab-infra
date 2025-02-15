@@ -23,22 +23,22 @@ variable "vpc_uuid" {
   type        = string
 }
 
-variable "infra_node_pool" {
-  description = "The configuration for the infra node pool"
-  type = map(object({
-    node_count = number
-    min_nodes  = number
-    max_nodes  = number
-    size       = string
-    labels     = map(string)
-    tags       = list(string)
-    taint = list(object({
-      key    = string
-      value  = string
-      effect = string
-    }))
-  }))
-}
+# variable "infra_node_pool" {
+#   description = "The configuration for the infra node pool"
+#   type = map(object({
+#     node_count = number
+#     min_nodes  = number
+#     max_nodes  = number
+#     size       = string
+#     labels     = map(string)
+#     tags       = list(string)
+#     taint = list(object({
+#       key    = string
+#       value  = string
+#       effect = string
+#     }))
+#   }))
+# }
 
 variable "app_node_pool" {
   description = "The configuration for the app node pool"
