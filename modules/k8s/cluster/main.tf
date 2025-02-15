@@ -20,6 +20,10 @@ module "homelab_cluster" {
 module "homelab_cluster_config" {
   source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
   
-  
+  deploy_ingress_nginx = {
+    nginx = {
+      version          = "4.12.0"
+    }
+  }
   depends_on = [ module.homelab_cluster ]
 }
