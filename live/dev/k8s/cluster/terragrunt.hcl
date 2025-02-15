@@ -15,10 +15,10 @@ inputs = {
 
     infra_node_pool = {
     infra_node = {
-        node_count = 1
-        min_nodes  = 1
+        node_count = 2
+        min_nodes  = 2
         max_nodes  = 2
-        size       = "s-2vcpu-4gb"
+        size       = "g-4vcpu-16gb"
         labels     = { "cluster" = "infra" }
         tags       = ["homelab-k8s-cluster"]
         taint = [
