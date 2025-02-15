@@ -18,7 +18,7 @@ inputs = {
         node_count = 1
         min_nodes  = 1
         max_nodes  = 1
-        size       = "s-8vcpu-16gb"
+        size       = "s-2vcpu-4gb"
         labels     = { "cluster" = "infra" }
         tags       = ["homelab-k8s-cluster"]
         taint = [
@@ -36,7 +36,7 @@ inputs = {
         node_count = 1
         min_nodes  = 1
         max_nodes  = 1
-        size       = "s-8vcpu-16gb"
+        size       = "s-2vcpu-4gb"
         labels     = { "cluster" = "app" }
         tags       = ["homelab-k8s-cluster"]
         taint = [
