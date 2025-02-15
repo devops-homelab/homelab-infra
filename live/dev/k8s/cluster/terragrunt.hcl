@@ -18,7 +18,7 @@ inputs = {
             node_count = 2
             min_nodes  = 2
             max_nodes  = 2
-            size       = "s-4vcpu-8gb-intel"
+            size       = "s-2vcpu-2gb"
             labels     = { "cluster" = "infra" }
             tags       = ["homelab-k8s-cluster"]
         }
