@@ -39,13 +39,7 @@ inputs = {
         size       = "s-4vcpu-8gb-intel"
         labels     = { "cluster" = "app" }
         tags       = ["homelab-k8s-cluster"]
-        # taint = [
-        # {
-        #     key    = "dedicated"
-        #     value  = "app"
-        #     effect = "NoSchedule"
-        # }
-        # ]
+        taint = []
     }
     }
 }
