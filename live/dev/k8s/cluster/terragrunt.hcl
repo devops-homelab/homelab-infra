@@ -39,7 +39,6 @@ inputs = {
         size       = "s-4vcpu-8gb-intel"
         labels     = { "cluster" = "app" }
         tags       = ["homelab-k8s-cluster"]
-        taint = []
     }
     }
 }
