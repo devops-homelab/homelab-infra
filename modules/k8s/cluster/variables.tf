@@ -50,11 +50,6 @@ variable "pat_token" {
   type        = string
 }
 
-variable "argocd_url" {
-  description = "ArgoCD URL"
-  type        = string
-}
-
 # variable "app_node_pool" {
 #   description = "The configuration for the app node pool"
 #   type = map(object({
