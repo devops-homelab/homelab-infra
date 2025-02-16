@@ -14,7 +14,6 @@ module "homelab_cluster" {
 
   infra_node_pool = var.infra_node_pool
 
-  # app_node_pool = var.app_node_pool
 }
 
 module "homelab_cluster_config" {
@@ -24,6 +23,10 @@ module "homelab_cluster_config" {
     nginx = {
       version          = "4.12.0"
     }
+  }
+
+  deploy_cert_manager = {
+    cert-manager = {  version = "1.17.1"  }
   }
 
   deploy_argo_cd = {
