@@ -29,6 +29,12 @@ module "homelab_cluster_config" {
     cert-manager = {  version = "1.17.1"  }
   }
 
+  issuer_type = {
+    type          = "cluster_issuer"
+    email         = "navindushane@gmail.com"
+    ingress_class = "nginx"
+  }
+
   deploy_argo_cd = {
     argo_cd = {
       version                 = "7.8.2"
