@@ -12,10 +12,6 @@ on:
       - 'README.md'
       - '.github/**'
 
-env:
-  TF_VAR_git_username: ${{ secrets.ARGOCD_GIT_USERNAME }}
-  TF_VAR_pat_token: ${{ secrets.ARGOCD_PAT_TOKEN }}
-  
 jobs:
   deploy-infra:
     permissions:
@@ -24,8 +20,8 @@ jobs:
       id-token: write
     uses: devops-homelab/homelab-github-reusable-workflows/.github/workflows/tf-deploy.yaml@main
     secrets:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       DO_ACCESS_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
+      TF_VAR_git_username: ${{ secrets.ARGOCD_GIT_USERNAME }}
+      TF_VAR_pat_token: ${{ secrets.ARGOCD_PAT_TOKEN }}
     with:
       config_file: config.env
