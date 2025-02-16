@@ -2,6 +2,10 @@ name: Manual Un-deploy with Terragrunt
 
 on: workflow_dispatch
 
+env:
+  TF_VAR_git_username: ${{ secrets.ARGOCD_GIT_USERNAME }}
+  TF_VAR_pat_token: ${{ secrets.ARGOCD_PAT_TOKEN }}
+
 jobs:
   un-deploy-infra:
     permissions:

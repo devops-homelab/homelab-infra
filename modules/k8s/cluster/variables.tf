@@ -40,6 +40,21 @@ variable "infra_node_pool" {
   }))
 }
 
+variable "git_username" {
+  description = "ArgoCD Git username"
+  type        = string
+}
+
+variable "pat_token" {
+  description = "ArgoCD Personal Access Token"
+  type        = string
+}
+
+variable "argocd_url" {
+  description = "ArgoCD URL"
+  type        = string
+}
+
 # variable "app_node_pool" {
 #   description = "The configuration for the app node pool"
 #   type = map(object({
