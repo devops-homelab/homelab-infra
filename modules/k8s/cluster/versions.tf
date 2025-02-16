@@ -18,3 +18,19 @@ provider "helm" {
     )
   }
 }
+
+provider "kubectl" {
+  host                   = module.homelab_cluster.endpoint[0]
+  cluster_ca_certificate = base64decode(
+      module.homelab_cluster.cluster_ca_certificate[0]
+    )
+  token                  = module.homelab_cluster.token[0]
+}
+
+terraform {
+  required_providers {
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+    }
+  }
+}
