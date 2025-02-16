@@ -26,3 +26,11 @@ provider "kubectl" {
     )
   token                  = module.homelab_cluster.token[0]
 }
+
+terraform {
+  required_providers {
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+    }
+  }
+}
