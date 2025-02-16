@@ -25,6 +25,7 @@ provider "kubectl" {
       module.homelab_cluster.cluster_ca_certificate[0]
     )
   token                  = module.homelab_cluster.token[0]
+  load_config_file = false
 }
 
 terraform {
