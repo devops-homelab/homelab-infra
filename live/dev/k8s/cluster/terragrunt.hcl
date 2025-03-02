@@ -8,6 +8,8 @@ include {
 
 inputs = {
     name            = "homelab-k8s-cluster"
+    enable_cluster_bootstrap = true
+    enable_application_bootstrap = true
     environment     = "dev"
     region          = "sgp1"
     cluster_version = "1.32.1-do.0"
