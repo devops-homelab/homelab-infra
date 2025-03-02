@@ -45,6 +45,13 @@ module "homelab_cluster_config" {
     }
   }
 
+  deploy_argo_rollouts = {
+    argo_rollouts = {
+      version                 = "2.39.0"
+      argo_rollouts_url       = var.argo_rollouts_url
+    }
+  }
+
   enable_cluster_bootstrap     = var.enable_cluster_bootstrap
   enable_application_bootstrap = var.enable_application_bootstrap
 

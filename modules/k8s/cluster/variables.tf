@@ -90,3 +90,9 @@ variable "enable_application_bootstrap" {
   default     = false
   
 }
+
+variable "argo_rollouts_url" {
+  description = "Argo Rollouts URL"
+  type        = string
+  
+}
