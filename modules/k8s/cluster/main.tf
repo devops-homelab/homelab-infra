@@ -40,6 +40,8 @@ module "homelab_cluster_config" {
       version                 = "7.8.2"
       pat_token               = var.pat_token
       git_username            = var.git_username
+      sso_client_id           = var.sso_client_id
+      sso_client_secret       = var.sso_client_secret
     }
   }
 
