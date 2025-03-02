@@ -45,6 +45,8 @@ module "homelab_cluster_config" {
     }
   }
 
+  enable_cluster_bootstrap     = var.enable_cluster_bootstrap
+  enable_application_bootstrap = var.enable_application_bootstrap
 
   depends_on = [ module.homelab_cluster ]
 }

@@ -76,3 +76,17 @@ variable "sso_client_secret" {
 #     })), []) # ✅ Ensure taint is optional with an empty list as default
 #   }))
 # }
+
+variable "enable_cluster_bootstrap" {
+  description = "Enable the cluster bootstrap"
+  type        = bool
+  default     = false
+  
+}
+
+variable "enable_application_bootstrap" {
+  description = "Enable the application bootstrap"
+  type        = bool
+  default     = false
+  
+}
