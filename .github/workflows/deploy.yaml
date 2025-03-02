@@ -11,7 +11,10 @@ on:
     paths-ignore:
       - 'README.md'
       - '.github/**'
-
+env:
+  TF_VAR_git_username: ${{ secrets.ARGOCD_GIT_USERNAME }}
+  TF_VAR_pat_token: ${{ secrets.ARGOCD_PAT_TOKEN }}
+  
 jobs:
   deploy-infra:
     permissions:
