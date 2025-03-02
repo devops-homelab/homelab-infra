@@ -25,5 +25,7 @@ jobs:
       DO_ACCESS_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
       TF_VAR_git_username: ${{ secrets.ARGOCD_GIT_USERNAME }}
       TF_VAR_pat_token: ${{ secrets.ARGOCD_PAT_TOKEN }}
+      TF_VAR_sso_client_id: ${{ secrets.ARGOCD_SSO_CLIENT_ID }}
+      TF_VAR_sso_client_secret: ${{ secrets.ARGOCD_SSO_CLIENT_SECRET }}
     with:
       config_file: config.env
