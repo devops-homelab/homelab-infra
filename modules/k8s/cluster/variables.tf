@@ -50,6 +50,16 @@ variable "pat_token" {
   type        = string
 }
 
+variable "sso_client_id" {
+  description = "ArgoCD SSO Client ID"
+  type        = string
+}
+
+variable "sso_client_secret" {
+  description = "ArgoCD SSO Client Secret"
+  type        = string
+}
+
 # variable "app_node_pool" {
 #   description = "The configuration for the app node pool"
 #   type = map(object({
