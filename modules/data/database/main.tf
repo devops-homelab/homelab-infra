@@ -15,10 +15,12 @@ module "postgresql" {
   cluster_size                 = var.cluster_size
   cluster_node_count           = var.cluster_node_count
   cluster_private_network_uuid = var.cluster_private_network_uuid
+
   cluster_maintenance = {
     maintenance_hour = var.maintenance_hour
     maintenance_day  = var.maintenance_day
   }
+  
   databases = var.databases
   users     = var.users
 
