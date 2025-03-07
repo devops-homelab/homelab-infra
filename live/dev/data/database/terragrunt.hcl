@@ -17,10 +17,10 @@ inputs = {
   cluster_private_network_uuid = "d1a05ead-4618-4fb1-8024-7bdd06c2ef32"
   maintenance_hour             = "02:00:00"
   maintenance_day              = "saturday"
-  databases                    = ["defaultdb"]
+  databases                    = ["homelab"]
   users = [
     {
-      name = "doadmin"
+      name = "homelab-user"
     }
   ]
   create_pools = false
