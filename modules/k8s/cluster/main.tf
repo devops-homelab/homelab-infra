@@ -35,22 +35,22 @@ module "homelab_cluster_config" {
     ingress_class = "nginx"
   }
 
-  deploy_argo_cd = {
-    argo_cd = {
-      version                 = "7.8.28"
-      pat_token               = var.pat_token
-      git_username            = var.git_username
-      sso_client_id           = var.sso_client_id
-      sso_client_secret       = var.sso_client_secret
-    }
-  }
+  # deploy_argo_cd = {
+  #   argo_cd = {
+  #     version                 = "7.8.28"
+  #     pat_token               = var.pat_token
+  #     git_username            = var.git_username
+  #     sso_client_id           = var.sso_client_id
+  #     sso_client_secret       = var.sso_client_secret
+  #   }
+  # }
 
-  deploy_argo_rollouts = {
-    argo_rollouts = {
-      version                 = "2.39.0"
-      argo_rollouts_url       = var.argo_rollouts_url
-    }
-  }
+  # deploy_argo_rollouts = {
+  #   argo_rollouts = {
+  #     version                 = "2.39.0"
+  #     argo_rollouts_url       = var.argo_rollouts_url
+  #   }
+  # }
 
   enable_cluster_bootstrap     = var.enable_cluster_bootstrap
   enable_application_bootstrap = var.enable_application_bootstrap
