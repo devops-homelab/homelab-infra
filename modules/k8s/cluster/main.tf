@@ -37,7 +37,7 @@ module "homelab_cluster_config" {
 
   deploy_argo_cd = {
     argo_cd = {
-      version                 = "7.8.2"
+      version                 = "7.8.28"
       pat_token               = var.pat_token
       git_username            = var.git_username
       sso_client_id           = var.sso_client_id
