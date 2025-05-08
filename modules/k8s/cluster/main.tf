@@ -19,11 +19,11 @@ module "homelab_cluster" {
 module "homelab_cluster_config" {
   source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
   
-  deploy_nginx_ingress = {
-    nginx = {
-      version          = "4.12.0"
-    }
-  }
+  # deploy_nginx_ingress = {
+  #   nginx = {
+  #     version          = "4.12.0"
+  #   }
+  # }
 
   deploy_cert_manager = {
     cert-manager = {  version = "1.17.1"  }
