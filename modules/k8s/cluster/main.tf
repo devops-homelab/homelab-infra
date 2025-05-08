@@ -21,9 +21,7 @@ module "homelab_cluster_config" {
 
   deploy_kong = {
     kong = {
-      version          = "4.12.0"
-      ingress_class    = "kong"
-      ingress_controller = true
+      version          = "2.48.0"
     }
   }
   
