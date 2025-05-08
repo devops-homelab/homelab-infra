@@ -18,6 +18,12 @@ module "homelab_cluster" {
 
 module "homelab_cluster_config" {
   source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
+
+  deploy_kong = {
+    kong = {
+      version          = "2.48.0"
+    }
+  }
   
   # deploy_nginx_ingress = {
   #   nginx = {
