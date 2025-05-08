@@ -32,7 +32,7 @@ module "homelab_cluster_config" {
   issuer_type = {
     type          = "cluster_issuer"
     email         = "navindushane@gmail.com"
-    ingress_class = "nginx"
+    ingress_class = "kong"
   }
 
   deploy_argo_cd = {
