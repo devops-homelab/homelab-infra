@@ -16,50 +16,50 @@ module "homelab_cluster" {
 
 }
 
-module "homelab_cluster_config" {
-  source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
+# module "homelab_cluster_config" {
+#   source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
 
-  deploy_kong = {
-    kong = {
-      version          = "2.48.0"
-    }
-  }
+#   deploy_kong = {
+#     kong = {
+#       version          = "2.48.0"
+#     }
+#   }
   
-  # deploy_nginx_ingress = {
-  #   nginx = {
-  #     version          = "4.12.0"
-  #   }
-  # }
+#   # deploy_nginx_ingress = {
+#   #   nginx = {
+#   #     version          = "4.12.0"
+#   #   }
+#   # }
 
-  deploy_cert_manager = {
-    cert-manager = {  version = "1.17.1"  }
-  }
+#   deploy_cert_manager = {
+#     cert-manager = {  version = "1.17.1"  }
+#   }
 
-  issuer_type = {
-    type          = "cluster_issuer"
-    email         = "navindushane@gmail.com"
-    ingress_class = "kong"
-  }
+#   issuer_type = {
+#     type          = "cluster_issuer"
+#     email         = "navindushane@gmail.com"
+#     ingress_class = "kong"
+#   }
 
-  deploy_argo_cd = {
-    argo_cd = {
-      version                 = "8.0.2"
-      pat_token               = var.pat_token
-      git_username            = var.git_username
-      sso_client_id           = var.sso_client_id
-      sso_client_secret       = var.sso_client_secret
-    }
-  }
+#   deploy_argo_cd = {
+#     argo_cd = {
+#       version                 = "8.0.2"
+#       pat_token               = var.pat_token
+#       git_username            = var.git_username
+#       sso_client_id           = var.sso_client_id
+#       sso_client_secret       = var.sso_client_secret
+#     }
+#   }
 
-  deploy_argo_rollouts = {
-    argo_rollouts = {
-      version                 = "2.39.0"
-      argo_rollouts_url       = var.argo_rollouts_url
-    }
-  }
+#   deploy_argo_rollouts = {
+#     argo_rollouts = {
+#       version                 = "2.39.0"
+#       argo_rollouts_url       = var.argo_rollouts_url
+#     }
+#   }
 
-  enable_cluster_bootstrap     = var.enable_cluster_bootstrap
-  enable_application_bootstrap = var.enable_application_bootstrap
+#   enable_cluster_bootstrap     = var.enable_cluster_bootstrap
+#   enable_application_bootstrap = var.enable_application_bootstrap
 
-  depends_on = [ module.homelab_cluster ]
-}
+#   depends_on = [ module.homelab_cluster ]
+# }
