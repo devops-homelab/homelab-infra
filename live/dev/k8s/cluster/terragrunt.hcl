@@ -13,7 +13,7 @@ inputs = {
     argo_rollouts_url = "https://argo-rollouts.devopshomelab.live"
     environment     = "dev"
     region          = "sgp1"
-    cluster_version = "1.32.2-do.1"
+    cluster_version = "1.33.1-do.0"
     vpc_uuid        = "d1a05ead-4618-4fb1-8024-7bdd06c2ef32"
 
     infra_node_pool = {
