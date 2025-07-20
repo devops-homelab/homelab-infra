@@ -10,7 +10,7 @@ import (
 func TestTerraformLocalSimple(t *testing.T) {
 	t.Parallel()
 
-	// Load environment variables
+	/* Load environment variables */
 	environment := os.Getenv("ENVIRONMENT")
 	component := os.Getenv("COMPONENT")
 	module := os.Getenv("MODULE")
