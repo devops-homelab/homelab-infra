@@ -7,7 +7,7 @@ include {
 }
 
 inputs = {
-  name                         = "homelab-postgresql-db-cluster"
+  name                         = "homelab-postgresql-db"
   environment                  = "dev"
   region                       = "sgp1"
   cluster_engine               = "pg"
