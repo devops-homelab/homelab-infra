@@ -1,17 +1,22 @@
 package test
 
 import (
+	"os"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	// "github.com/stretchr/testify/assert"
 )
 
 func TestTerraformLocalSimple(t *testing.T) {
 	t.Parallel()
 
+	// Load environment variables
+	environment := os.Getenv("ENVIRONMENT")
+	component := os.Getenv("COMPONENT")
+	module := os.Getenv("MODULE")
+
 	terraformOptions := &terraform.Options{
-		TerraformDir:    "../live/dev/k8s/cluster",
+		TerraformDir:    "../live/" + environment + "/" + component + "/" + module,
 		TerraformBinary: "terragrunt",
 		Reconfigure:     true,
 	}
