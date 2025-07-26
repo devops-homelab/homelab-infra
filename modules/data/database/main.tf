@@ -6,7 +6,7 @@ terraform {
 }
 
 module "postgresql" {
-  source                       = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/database/?ref=main"
+  source                       = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/database/?ref=v3.2.0"
   name                         = var.name
   environment                  = var.environment
   region                       = var.region

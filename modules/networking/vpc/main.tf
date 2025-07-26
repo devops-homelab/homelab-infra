@@ -6,7 +6,7 @@ terraform {
 }
 
 module "vpc" {
-  source      = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/vpc/?ref=main"
+  source      = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/vpc/?ref=v3.2.0"
   name        = var.name
   environment = var.environment
   region      = var.region

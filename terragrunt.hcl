@@ -1,3 +1,4 @@
+# Remote state configuration
 remote_state {
   backend = "s3"
 
