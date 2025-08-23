@@ -4,7 +4,7 @@ remote_state {
   config = {
     bucket                      = "homelab-terraform-state"
     key                         = "${path_relative_to_include()}/terraform.tfstate"
-    endpoint                    = "https://homelab-terraform-state.sgp1.digitaloceanspaces.com"
+    endpoint                    = "https://sgp1.digitaloceanspaces.com"
     skip_credentials_validation = true
     skip_requesting_account_id  = true
     skip_metadata_api_check     = true
