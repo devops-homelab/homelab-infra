@@ -1,3 +1,4 @@
+# Terragrunt configuration
 remote_state {
   backend = "s3"
 
