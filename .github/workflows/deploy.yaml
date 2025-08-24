@@ -19,7 +19,7 @@ jobs:
       contents: read
       pull-requests: read
       id-token: write
-    uses: devops-homelab/homelab-github-reusable-workflows/.github/workflows/tf-deploy.yaml@v1.1.0
+    uses: devops-homelab/homelab-github-reusable-workflows/.github/workflows/tf-deploy.yaml@main
     secrets:
       DO_SPACES_ACCESS_KEY_ID: ${{ secrets.DO_SPACES_ACCESS_KEY_ID }}
       DO_SPACES_SECRET_ACCESS_KEY: ${{ secrets.DO_SPACES_SECRET_ACCESS_KEY }}
@@ -37,7 +37,7 @@ jobs:
       contents: read
       pull-requests: read
       id-token: write
-    uses: devops-homelab/homelab-github-reusable-workflows/.github/workflows/tf-deploy.yaml@v1.1.0
+    uses: devops-homelab/homelab-github-reusable-workflows/.github/workflows/tf-deploy.yaml@main
     secrets:
       DO_SPACES_ACCESS_KEY_ID: ${{ secrets.DO_SPACES_ACCESS_KEY_ID }}
       DO_SPACES_SECRET_ACCESS_KEY: ${{ secrets.DO_SPACES_SECRET_ACCESS_KEY }}
