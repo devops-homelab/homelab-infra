@@ -1,3 +1,4 @@
+# Terraform remote state configuration
 remote_state {
   backend = "s3"
 
