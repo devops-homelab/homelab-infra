@@ -5,7 +5,7 @@ terraform {
   backend "s3" {}
 }
 module "homelab_cluster" {
-  source          = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/cluster/?ref=main"
+  source          = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/cluster/?ref=v3.6.0"
   name            = var.name
   environment     = var.environment
   region          = var.region
@@ -17,19 +17,13 @@ module "homelab_cluster" {
 }
 
 module "homelab_cluster_config" {
-  source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
+  source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=v3.6.0"
 
   deploy_kong = {
     kong = {
       version          = "2.48.0"
     }
   }
-  
-  # deploy_nginx_ingress = {
-  #   nginx = {
-  #     version          = "4.12.0"
-  #   }
-  # }
 
   deploy_cert_manager = {
     cert-manager = {  version = "1.17.1"  }
