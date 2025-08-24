@@ -19,8 +19,6 @@ module "homelab_cluster" {
 module "homelab_cluster_config" {
   source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=v3.7.0"
 
-  deploy_gateway_api = true  # Enable Gateway API CRDs before Kong
-
   deploy_kong = {
     kong = {
       version          = "2.48.0"
