@@ -6,7 +6,6 @@ remote_state {
     bucket                      = "homelab-terraform-state"
     key                         = "${path_relative_to_include()}/terraform.tfstate"
     endpoint                    = "https://sgp1.digitaloceanspaces.com"
-    use_path_style              = true  # New AWS SDK v2 parameter (replaces force_path_style)
     skip_credentials_validation = true
     skip_requesting_account_id  = true
     skip_metadata_api_check     = true
