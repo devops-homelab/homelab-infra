@@ -1,4 +1,4 @@
-name: Deploy with Terragrunt
+name: Deploy with Terragrunt CI
 
 on:
   pull_request:
