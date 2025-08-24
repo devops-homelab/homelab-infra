@@ -13,6 +13,34 @@ The infrastructure is designed following cloud-native principles with modern Kub
 - **Policy as Code**: Security governance with Kyverno
 - **Observability**: Monitoring and alerting stack
 
+## Architecture Diagram
+
+```mermaid
+flowchart TB
+  subgraph Cloud
+    DNS[DNS Provider]
+    LB[Load Balancer]
+    K8s[Kubernetes Cluster]
+    DB[(Postgres)]
+  end
+
+  subgraph K8s
+    Kong[Kong Gateway Controller]
+    ArgoCD[ArgoCD]
+    CertMgr[cert-manager]
+    Kyverno[Kyverno]
+    Apps[Applications]
+  end
+
+  DNS --> LB
+  LB --> Kong
+  Kong --> Apps
+  ArgoCD --> K8s
+  CertMgr -->|issues| DNS
+  Apps --> DB
+  Kyverno --> Apps
+```
+
 ## Repository Structure
 
 ```
