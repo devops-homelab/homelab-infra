@@ -21,7 +21,7 @@ module "homelab_cluster_config" {
 
   deploy_kong = {
     kong = {
-      version          = "2.48.0"
+      version          = "2.52.0"
     }
   }
 
