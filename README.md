@@ -161,15 +161,9 @@ The infrastructure deploys Kong with Gateway API v1.0.0 support:
 
 ```hcl
 deploy_kong = {
-  dev = {
-    version = "2.48.0"
+  kong = {
+    version             = "2.52.0"
     gateway_api_enabled = true
-    additional_set = [
-      {
-        name  = "ingressController.gatewayAPI.enabled"
-        value = "true"
-      }
-    ]
   }
 }
 ```

@@ -11,8 +11,8 @@ provider "kubernetes" {
 
 provider "helm" {
   kubernetes {
-    host  = module.homelab_cluster.endpoint[0]
-    token = module.homelab_cluster.token[0]
+    host                   = module.homelab_cluster.endpoint[0]
+    token                  = module.homelab_cluster.token[0]
     cluster_ca_certificate = base64decode(
       module.homelab_cluster.cluster_ca_certificate[0]
     )

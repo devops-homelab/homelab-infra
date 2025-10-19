@@ -17,11 +17,12 @@ module "homelab_cluster" {
 }
 
 module "homelab_cluster_config" {
-  source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=v3.9.0"
+  source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=main"
 
   deploy_kong = {
     kong = {
-      version          = "2.52.0"
+      version             = "2.52.0"
+      gateway_api_enabled = true
     }
   }
 
