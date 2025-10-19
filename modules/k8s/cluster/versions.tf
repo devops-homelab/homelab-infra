@@ -28,7 +28,6 @@ provider "kubectl" {
   load_config_file = false
 }
 
-
 terraform {
   required_providers {
     kubectl = {
