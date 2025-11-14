@@ -19,11 +19,13 @@ module "homelab_cluster" {
 module "homelab_cluster_config" {
   source = "github.com/devops-homelab/homelab-terraform-modules.git//digitalocean/kubernetes/config/?ref=v3.9.0"
 
-  deploy_kong = {
-    kong = {
-      version          = "2.52.0"
-    }
-  }
+  # Kong disabled - using Cilium only (Cilium pre-installed by DigitalOcean)
+  # deploy_kong = {
+  #   kong = {
+  #     version             = "2.52.0"
+  #     gateway_api_enabled = true
+  #   }
+  # }
 
   deploy_cert_manager = {
     cert-manager = {  version = "1.17.1"  }
@@ -32,7 +34,7 @@ module "homelab_cluster_config" {
   issuer_type = {
     type          = "cluster_issuer"
     email         = "navindushane@gmail.com"
-    ingress_class = "kong"
+    ingress_class = "cilium"
   }
 
   deploy_argo_cd = {

@@ -157,22 +157,20 @@ kubectl get certificates -A
 ## Gateway API Implementation
 
 ### Kong Gateway Controller
-The infrastructure deploys Kong with Gateway API v1.0.0 support:
+The infrastructure uses Cilium Gateway API v1.0.0 (pre-installed by DigitalOcean):
 
 ```hcl
-deploy_kong = {
-  dev = {
-    version = "2.48.0"
-    gateway_api_enabled = true
-    additional_set = [
-      {
-        name  = "ingressController.gatewayAPI.enabled"
-        value = "true"
-      }
-    ]
-  }
-}
+# Kong is disabled - using Cilium Gateway API only
+# Cilium is pre-installed and managed by DigitalOcean on DOKS clusters
+# deploy_kong = {
+#   kong = {
+#     version             = "2.52.0"
+#     gateway_api_enabled = true
+#   }
+# }
 ```
+
+**Note**: Cilium and its GatewayClass are automatically provided by DigitalOcean Kubernetes. No additional installation required.
 
 ### GatewayClass Configuration
 Automatic creation of Kong GatewayClass:
